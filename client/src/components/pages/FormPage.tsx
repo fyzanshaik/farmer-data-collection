@@ -1,27 +1,11 @@
-import { Button } from "../ui/button";
-import AppSidebar from "../custom/AppSidebar";
-import DetailsTable from "../custom/DetailsTable";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-	Dialog,
-	DialogClose,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
+import { Button } from '../ui/button';
+import AppSidebar from '../custom/AppSidebar';
+import DetailsTable from '../custom/DetailsTable';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
+import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 
 const FormPage = () => {
 	return (
@@ -33,24 +17,19 @@ const FormPage = () => {
 					<div className="ml-auto flex gap-2 mb-2">
 						<Dialog>
 							<DialogTrigger asChild>
-								<Button>Add new field</Button>
+								<Button>ADD FARMER DATA</Button>
 							</DialogTrigger>
 							<DialogContent className="sm:max-w-md">
 								<DialogHeader>
 									<DialogTitle>Enter Farmer Details</DialogTitle>
-									<DialogDescription>
-										Lorem Ipsum Description for the form...
-									</DialogDescription>
+									<DialogDescription>Lorem Ipsum Description for the form...</DialogDescription>
 								</DialogHeader>
 								<div className="flex items-center space-x-2">
 									<div className="grid flex-1 gap-2">
 										<Label htmlFor="link" className="sr-only">
 											Link
 										</Label>
-										<Input
-											id="link"
-											defaultValue="https://ui.shadcn.com/docs/installation"
-										/>
+										<Input id="link" defaultValue="https://ui.shadcn.com/docs/installation" />
 									</div>
 								</div>
 								<DialogFooter className="sm:justify-start">
@@ -65,7 +44,7 @@ const FormPage = () => {
 
 						<DropdownMenu>
 							<DropdownMenuTrigger>
-								<Button variant={"outline"}>Export Document</Button>
+								<Button variant={'outline'}>Export Document</Button>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent>
 								<DropdownMenuLabel>Export as</DropdownMenuLabel>
