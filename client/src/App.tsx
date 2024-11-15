@@ -1,9 +1,15 @@
-import { Button } from './components/ui/button';
+import Page from "./components/custom/Page";
+import { ThemeProvider } from "./components/theme-provider";
+import { SidebarProvider } from "./components/ui/sidebar";
+
 const App = () => {
 	return (
 		<>
-			<h1 className="text-3xl font-bold underline">Client === frontend</h1>
-			<Button className="w-[145px] mt-10 justify-center ">Click me</Button>
+			<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+				<SidebarProvider>
+					<Page />
+				</SidebarProvider>
+			</ThemeProvider>
 		</>
 	);
 };

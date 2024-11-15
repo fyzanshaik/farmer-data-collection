@@ -1,0 +1,7 @@
+# Ignore artifacts:
+build
+dist
+
+# Ignore all test files:
+**/*.test.js
+**/*.spec.js
