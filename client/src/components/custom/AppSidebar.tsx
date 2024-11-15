@@ -9,8 +9,9 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Link } from "react-router-dom";
 import { ModeToggle } from "../mode-toggle";
+import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 
 const items = [
 	{
@@ -24,8 +25,8 @@ const items = [
 		icon: Inbox,
 	},
 	{
-		title: "Calendar",
-		url: "#",
+		title: "Farmer Form",
+		url: "/farmerform",
 		icon: Calendar,
 	},
 	{
@@ -54,10 +55,10 @@ const AppSidebar = () => {
 							{items.map((item) => (
 								<SidebarMenuItem key={item.title}>
 									<SidebarMenuButton asChild>
-										<a href={item.url}>
+										<Link to={item.url}>
 											<item.icon />
-											<span>{item.title}</span>
-										</a>
+											{item.title}
+										</Link>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
 							))}
