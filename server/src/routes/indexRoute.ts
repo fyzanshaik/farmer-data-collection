@@ -2,6 +2,6 @@ import { Router } from 'express';
 import { pingController } from '../controllers/pingController';
 const router = Router();
 
-router.get('/ping', pingController);
+router.get('/', pingController);
 
 export default router;

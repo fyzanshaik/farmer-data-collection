@@ -9,8 +9,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
@@ -21,64 +22,75 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
-model Farmer {
-  id           String       @id @default(cuid())
-  name         String
-  photoUrl     String?
-  relationInfo String // S/O, W/O, D/O
-  gender       Gender
-  community    String
-  aadharNumber String       @unique
-  state        String
-  district     String
-  mandal       String
-  village      String
-  panchayath   String
-  dateOfBirth  DateTime
-  age          Int
-  contact      String
-  bankDetails  BankDetails?
-  fields       Field[]
-  documents    Document[]
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-}
-
-model BankDetails {
-  id            String @id @default(cuid())
-  accountNumber String
-  ifscCode      String
-  bankName      String
-  farmer        Farmer @relation(fields: [farmerId], references: [id])
-  farmerId      String @unique
-}
-
-model Field {
-  id            String @id @default(cuid())
-  geoLocation   Json
-  surveyNumber  String
-  areaInHa      Float
-  yieldEstimate Float
-  farmer        Farmer @relation(fields: [farmerId], references: [id])
-  farmerId      String
-}
-
-model Document {
-  id       String       @id @default(cuid())
-  type     DocumentType
-  fileUrl  String
-  farmer   Farmer       @relation(fields: [farmerId], references: [id])
-  farmerId String
-}
-
 enum Gender {
   MALE
   FEMALE
   OTHER
 }
 
-enum DocumentType {
-  AADHAR
-  BANK_STATEMENT
-  LAND_DOCUMENT
+model Farmer {
+  id           String    @id @default(cuid())
+  name         String
+  photo        String?
+  relationInfo String
+  gender       Gender
+  community    Community
+  aadharNumber String    @unique
+  state        String
+  district     String
+  mandal       String
+  village      String
+  panchayat    String
+  dateOfBirth  DateTime
+  age          Int
+  contact      String
+
+  aadharDocument String?
+  landDocument   String?
+  bankDocument   String?
+
+  bankDetails BankDetails?
+  fields      Field[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BankDetails {
+  id         String @id @default(cuid())
+  ifscCode   String
+  branchName String
+  address    String
+  bankName   String
+  bankCode   String
+
+  farmer   Farmer @relation(fields: [farmerId], references: [id])
+  farmerId String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Field {
+  id            String @id @default(cuid())
+  geoTag        Json
+  surveyNumber  String
+  areaInHa      Float
+  yieldEstimate Float
+
+  farmer   Farmer @relation(fields: [farmerId], references: [id])
+  farmerId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([farmerId])
+}
+
+enum Community {
+  GENERAL
+  OBC
+  BC
+  SC
+  ST
 }
