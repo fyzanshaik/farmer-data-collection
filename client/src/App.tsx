@@ -1,9 +1,20 @@
-import { Button } from './components/ui/button';
+import { Routes, Route } from "react-router-dom";
+import FormPage from "./components/pages/FormPage";
+import { SidebarProvider } from "./components/ui/sidebar";
+import { FarmerForm } from "./components/custom/FarmerForm";
+import { ThemeProvider } from "./components/theme-provider";
+
 const App = () => {
 	return (
 		<>
-			<h1 className="text-3xl font-bold underline">Client === frontend</h1>
-			<Button className="w-[145px] mt-10 justify-center ">Click me</Button>
+			<ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+				<SidebarProvider>
+					<Routes>
+						<Route path="/" element={<FormPage />} />
+						<Route path="/farmerform" element={<FarmerForm />} />
+					</Routes>
+				</SidebarProvider>
+			</ThemeProvider>
 		</>
 	);
 };
