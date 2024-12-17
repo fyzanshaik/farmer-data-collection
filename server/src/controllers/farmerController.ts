@@ -1,9 +1,19 @@
-import { Request, Response } from 'express';
-import { Gender, Community } from '@prisma/client';
-import prisma from '../lib/prisma';
-import { uploadFile } from '../utils/upload';
-import { z } from 'zod';
-import { createFarmerSchema } from '../schema/zodSchema';
+import { Request, Response } from "express";
+import { Gender, Community, Farmer } from "@prisma/client";
+import prisma from "../lib/prisma";
+import { uploadFile } from "../utils/upload";
+import { z } from "zod";
+import { createFarmerSchema } from "../schema/zodSchema";
+
+export interface Field {
+  geoTag: {
+    latitude: number;
+    longitude: number;
+  };
+  surveyNumber: string;
+  areaInHa: number;
+  yieldEstimate: number;
+}
 
 export const createFarmer = async (req: Request, res: Response) => {
 	try {
@@ -186,4 +196,3 @@ export const deleteFarmer = async (req: Request, res: Response): Promise<void> =
 		res.status(500).json({ success: false, error: 'Failed to delete farmer' });
 	}
 };
-
